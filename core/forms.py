@@ -1,7 +1,8 @@
 from time import sleep
 
 from django import forms
-from django.core.mail import send_mail
+
+from core.tasks import send_feedback_email_task
 
 
 class FeedbackForm(forms.Form):
@@ -15,10 +16,6 @@ class FeedbackForm(forms.Form):
         Sends an email when the feedback form has been submitted
         :return:
         """
-        subject = "Your Feedback"
-        message = f"Your feedback has been received:\n\n{self.cleaned_data['message']}"
-        from_email = self.cleaned_data["email"]
-        to_email = "support@example.com"
-        sleep(10)  # Simulate a slow email server
-        send_mail(subject, message, from_email, [to_email])
-        print("Email sent")
+        send_feedback_email_task.delay(
+            self.cleaned_data["email"], self.cleaned_data["message"]
+        )
