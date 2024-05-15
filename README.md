@@ -59,9 +59,6 @@ And then:
       
 After that just install the local dependencies, run migrations, and start the server.
 
-{% endif %}
-
-# {{ project_name|title }}
 
 # Getting Started
 
