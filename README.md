@@ -34,7 +34,7 @@ If your project is already in an existing python3 virtualenv first install djang
 And then run the `django-admin.py` command to start the new project:
 
     $ django-admin.py startproject \
-      --template=https://github.com/nikola-k/django-template/zipball/master \
+      --template=https://github.com/papismurf/task-runner-template \
       --extension=py,md \
       <project_name>
       
